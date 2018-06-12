@@ -13,7 +13,7 @@ public class Principal {
     public static void executarSeminario() {
 	Grafo g = new Grafo();
 
-	g.setOrientado(true);
+	g.setOrientado(false);
 
 	g.adicionarVertice("s");
 	g.adicionarVertice("a");

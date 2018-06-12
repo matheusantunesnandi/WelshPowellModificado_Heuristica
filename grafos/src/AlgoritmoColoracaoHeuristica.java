@@ -19,7 +19,7 @@ public class AlgoritmoColoracaoHeuristica {
 	this.grafo = grafo;
 
 	q.addAll(grafo.getVertices());
-	
+
 	grafo.ordernarVerticesPorGrau(q);
 
 	for (Vertice v : q) {
@@ -30,7 +30,7 @@ public class AlgoritmoColoracaoHeuristica {
     public void imprimirNumeroCromatico() {
 
 	colorir();
-	
+
 	StringBuilder nCromatico = new StringBuilder();
 
 	nCromatico.append("Welsh-Powell Modificado para heurística:\n");
@@ -44,7 +44,7 @@ public class AlgoritmoColoracaoHeuristica {
 	nCromatico.append("-");
 	nCromatico.append(verticesColoridos.get(z));
 
-	for (Vertice u : grafo.getVertices()) {
+	for (Vertice u : vertices) {
 	    nCromatico.append(", ");
 	    nCromatico.append(u.getNome());
 	    nCromatico.append("-");
@@ -69,7 +69,16 @@ public class AlgoritmoColoracaoHeuristica {
 
 	    atualizarCorDoVertice(u, proximaCor);
 
-	    for (Vertice v : u.getAdjacentes()) {
+	    ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
+	    adjacentesFiltrados.addAll(u.getAdjacentes());
+
+	    ArrayList<Vertice> verticesFiltrados = new ArrayList<>();
+	    verticesFiltrados.addAll(grafo.getVertices());
+	    verticesFiltrados.removeAll(q);
+
+	    adjacentesFiltrados.removeAll(verticesFiltrados);
+
+	    for (Vertice v : adjacentesFiltrados) {
 		atualizarCorDoVertice(v, proximaCor);
 	    }
 	}
@@ -78,8 +87,18 @@ public class AlgoritmoColoracaoHeuristica {
     public int getProximaCorDisponivel(Vertice v) {
 
 	ArrayList<Integer> coresUsadas = new ArrayList<>();
+	
 
-	for (Vertice u : v.getAdjacentes()) {
+	    ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
+	    adjacentesFiltrados.addAll(v.getAdjacentes());
+
+	    ArrayList<Vertice> verticesFiltrados = new ArrayList<>();
+	    verticesFiltrados.addAll(grafo.getVertices());
+	    verticesFiltrados.removeAll(q);
+
+	    adjacentesFiltrados.removeAll(verticesFiltrados);
+
+	for (Vertice u : adjacentesFiltrados) {
 
 	    Integer cor = verticesColoridos.get(u);
 

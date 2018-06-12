@@ -42,12 +42,36 @@ public class Grafo {
     }
 
     public void adicionarAresta(Vertice verticeA, Vertice verticeB, Double valor) {
+
+	// boolean arestaExistenteAB = false;
+	// boolean arestaExistenteBA = false;
+
 	if (!isOrientado()) {
-	    verticeA.getAdjacentes().add(verticeB);
-	    verticeB.getAdjacentes().add(verticeA);
+
+	    if (!verticeA.getAdjacentes().contains(verticeB)) {
+		verticeA.getAdjacentes().add(verticeB);
+
+	    }
+	    // else {
+	    // arestaExistenteAB = true;
+	    // }
+
+	    if (!verticeB.getAdjacentes().contains(verticeA)) {
+		verticeB.getAdjacentes().add(verticeA);
+
+	    }
+	    // else {
+	    // arestaExistenteBA = true;
+	    // }
 	} else {
-	    verticeA.getAdjacentes().add(verticeB);
+
+	    if (!verticeA.getAdjacentes().contains(verticeB))
+		verticeA.getAdjacentes().add(verticeB);
 	}
+
+	// if(!isOrientado() && (arestaExistenteAB || arestaExistenteBA)) {
+	// return;
+	// }
 
 	Aresta a = new Aresta();
 
