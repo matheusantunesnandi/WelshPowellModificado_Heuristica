@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AlgoritmoColoracaoHeuristica {
-
-    // public static double VALOR_RAIZ = 0.0;
     public static int PRIMEIRO_DA_LISTA = 0;
 
     private Grafo grafo;
@@ -20,8 +18,8 @@ public class AlgoritmoColoracaoHeuristica {
 
 	q.addAll(grafo.getVertices());
 
+//	TODO Corrigir a ordenação de algum modo. Observando no desenho, a ordem deveria ser: a || d, b || c, s || t
 	grafo.ordernarVerticesPorGrau(q);
-//	grafo.ordernarVertices(q);
 
 	for (Vertice v : q) {
 	    verticesColoridos.put(v, null);
@@ -38,7 +36,7 @@ public class AlgoritmoColoracaoHeuristica {
 
 	ArrayList<Vertice> vertices = new ArrayList<>();
 	vertices.addAll(q);
-	
+
 	Vertice z = vertices.get(PRIMEIRO_DA_LISTA);
 	vertices.remove(z);
 	nCromatico.append(z.getNome());
@@ -64,41 +62,21 @@ public class AlgoritmoColoracaoHeuristica {
 
 	ArrayList<Vertice> qb = new ArrayList<>();
 	qb.addAll(q);
-	
+
 	while (!qb.isEmpty()) {
 	    Vertice u = qb.get(PRIMEIRO_DA_LISTA);
 	    qb.remove(u);
 
-//	    Integer proximaCor = getProximaCorDisponivel(u, qb);
 	    Integer proximaCor = getProximaCorDisponivel(u);
 
 	    atualizarCorDoVertice(u, proximaCor);
-
-//	    ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
-//	    adjacentesFiltrados.addAll(u.getAdjacentes());
-//
-//	    ArrayList<Vertice> verticesFiltrados = new ArrayList<>();
-//	    verticesFiltrados.addAll(grafo.getVertices());
-//	    verticesFiltrados.removeAll(q);
-//
-//	    adjacentesFiltrados.removeAll(verticesFiltrados);
-//
-//	    for (Vertice v : adjacentesFiltrados) {
-//		atualizarCorDoVertice(v, proximaCor);
-//	    }
 	}
     }
 
-//    public int getProximaCorDisponivel(Vertice v, ArrayList<Vertice> qb) {
     public int getProximaCorDisponivel(Vertice v) {
 
 	ArrayList<Integer> coresUsadas = new ArrayList<>();
 
-//	ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
-//	adjacentesFiltrados.addAll(v.getAdjacentes());
-//	adjacentesFiltrados.removeAll(qb);
-
-//	for (Vertice u : adjacentesFiltrados) {
 	for (Vertice u : v.getAdjacentes()) {
 
 	    Integer cor = verticesColoridos.get(u);
