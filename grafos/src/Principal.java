@@ -2,10 +2,38 @@ public class Principal {
 
     public static void main(String[] args) {
 
-	imprimirLegenda();
-	executarTrabalho2();
-	executarTrabalho3();
-//	executarAlgoritmoFordFulkerson();
+	// imprimirLegenda();
+	// executarTrabalho2();
+	// executarTrabalho3();
+	// executarAlgoritmoFordFulkerson();
+
+	executarSeminario();
+    }
+
+    public static void executarSeminario() {
+	Grafo g = new Grafo();
+
+	g.setOrientado(true);
+
+	g.adicionarVertice("s");
+	g.adicionarVertice("a");
+	g.adicionarVertice("b");
+	g.adicionarVertice("c");
+	g.adicionarVertice("d");
+	g.adicionarVertice("t");
+
+	g.adicionarAresta("s", "a", 10.0);
+	g.adicionarAresta("s", "b", 10.0);
+	g.adicionarAresta("a", "c", 4.0);
+	g.adicionarAresta("a", "d", 8.0);
+	g.adicionarAresta("a", "b", 2.0);
+	g.adicionarAresta("b", "d", 9.0);
+	g.adicionarAresta("d", "c", 6.0);
+	g.adicionarAresta("d", "t", 10.0);
+	g.adicionarAresta("c", "t", 10.0);
+
+	AlgoritmoColoracaoHeuristica ach = new AlgoritmoColoracaoHeuristica(g);
+	ach.imprimirNumeroCromatico();
 
     }
 
