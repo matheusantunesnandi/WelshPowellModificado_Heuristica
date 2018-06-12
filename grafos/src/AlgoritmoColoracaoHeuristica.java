@@ -87,16 +87,10 @@ public class AlgoritmoColoracaoHeuristica {
     public int getProximaCorDisponivel(Vertice v) {
 
 	ArrayList<Integer> coresUsadas = new ArrayList<>();
-	
 
-	    ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
-	    adjacentesFiltrados.addAll(v.getAdjacentes());
-
-	    ArrayList<Vertice> verticesFiltrados = new ArrayList<>();
-	    verticesFiltrados.addAll(grafo.getVertices());
-	    verticesFiltrados.removeAll(q);
-
-	    adjacentesFiltrados.removeAll(verticesFiltrados);
+	ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
+	adjacentesFiltrados.addAll(v.getAdjacentes());
+	adjacentesFiltrados.removeAll(q);
 
 	for (Vertice u : adjacentesFiltrados) {
 

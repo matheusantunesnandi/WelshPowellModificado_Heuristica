@@ -17,32 +17,32 @@ public class Principal {
 
 	g.adicionarVertice("s");
 	g.adicionarVertice("a");
-	
 	g.adicionarVertice("b");
 	g.adicionarVertice("c");
-//	g.adicionarVertice("d");
-//	g.adicionarVertice("t");
+	g.adicionarVertice("d");
+	g.adicionarVertice("t");
 
-//	g.adicionarAresta("s", "a", 10.0);
-//	g.adicionarAresta("s", "b", 10.0);
-//	g.adicionarAresta("a", "c", 4.0);
-//	g.adicionarAresta("a", "d", 8.0);
-//	g.adicionarAresta("a", "b", 2.0);
-//	g.adicionarAresta("b", "d", 9.0);
-//	g.adicionarAresta("d", "c", 6.0);
-//	g.adicionarAresta("d", "t", 10.0);
-//	g.adicionarAresta("c", "t", 10.0);
+	g.adicionarAresta("s", "a", 10.0);
+	g.adicionarAresta("s", "b", 10.0);
+	g.adicionarAresta("a", "c", 4.0);
+	g.adicionarAresta("a", "d", 8.0);
+	g.adicionarAresta("a", "b", 2.0);
+	g.adicionarAresta("b", "d", 9.0);
+	g.adicionarAresta("d", "c", 6.0);
+	g.adicionarAresta("d", "t", 10.0);
+	g.adicionarAresta("c", "t", 10.0);
 	
 
-	g.adicionarAresta("s", "b", 10.0);
-	g.adicionarAresta("s", "c", 10.0);
-	g.adicionarAresta("a", "b", 10.0);
-	g.adicionarAresta("a", "c", 10.0);
-
-	g.adicionarAresta("b", "s", 10.0);
-	g.adicionarAresta("b", "a", 10.0);
-	g.adicionarAresta("c", "s", 10.0);
-	g.adicionarAresta("c", "a", 10.0);
+//	Bibartido
+//	g.adicionarAresta("s", "b", 10.0);
+//	g.adicionarAresta("s", "c", 10.0);
+//	g.adicionarAresta("a", "b", 10.0);
+//	g.adicionarAresta("a", "c", 10.0);
+//
+//	g.adicionarAresta("b", "s", 10.0);
+//	g.adicionarAresta("b", "a", 10.0);
+//	g.adicionarAresta("c", "s", 10.0);
+//	g.adicionarAresta("c", "a", 10.0);
 
 	AlgoritmoColoracaoHeuristica ach = new AlgoritmoColoracaoHeuristica(g);
 	ach.imprimirNumeroCromatico();
