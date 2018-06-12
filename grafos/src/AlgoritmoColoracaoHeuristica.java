@@ -21,6 +21,7 @@ public class AlgoritmoColoracaoHeuristica {
 	q.addAll(grafo.getVertices());
 
 	grafo.ordernarVerticesPorGrau(q);
+//	grafo.ordernarVertices(q);
 
 	for (Vertice v : q) {
 	    verticesColoridos.put(v, null);
@@ -36,8 +37,8 @@ public class AlgoritmoColoracaoHeuristica {
 	nCromatico.append("Welsh-Powell Modificado para heurística:\n");
 
 	ArrayList<Vertice> vertices = new ArrayList<>();
-	vertices.addAll(grafo.getVertices());
-
+	vertices.addAll(q);
+	
 	Vertice z = vertices.get(PRIMEIRO_DA_LISTA);
 	vertices.remove(z);
 	nCromatico.append(z.getNome());
@@ -61,38 +62,44 @@ public class AlgoritmoColoracaoHeuristica {
 
     public void colorir() {
 
-	while (!q.isEmpty()) {
-	    Vertice u = q.get(PRIMEIRO_DA_LISTA);
-	    q.remove(u);
+	ArrayList<Vertice> qb = new ArrayList<>();
+	qb.addAll(q);
+	
+	while (!qb.isEmpty()) {
+	    Vertice u = qb.get(PRIMEIRO_DA_LISTA);
+	    qb.remove(u);
 
+//	    Integer proximaCor = getProximaCorDisponivel(u, qb);
 	    Integer proximaCor = getProximaCorDisponivel(u);
 
 	    atualizarCorDoVertice(u, proximaCor);
 
-	    ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
-	    adjacentesFiltrados.addAll(u.getAdjacentes());
-
-	    ArrayList<Vertice> verticesFiltrados = new ArrayList<>();
-	    verticesFiltrados.addAll(grafo.getVertices());
-	    verticesFiltrados.removeAll(q);
-
-	    adjacentesFiltrados.removeAll(verticesFiltrados);
-
-	    for (Vertice v : adjacentesFiltrados) {
-		atualizarCorDoVertice(v, proximaCor);
-	    }
+//	    ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
+//	    adjacentesFiltrados.addAll(u.getAdjacentes());
+//
+//	    ArrayList<Vertice> verticesFiltrados = new ArrayList<>();
+//	    verticesFiltrados.addAll(grafo.getVertices());
+//	    verticesFiltrados.removeAll(q);
+//
+//	    adjacentesFiltrados.removeAll(verticesFiltrados);
+//
+//	    for (Vertice v : adjacentesFiltrados) {
+//		atualizarCorDoVertice(v, proximaCor);
+//	    }
 	}
     }
 
+//    public int getProximaCorDisponivel(Vertice v, ArrayList<Vertice> qb) {
     public int getProximaCorDisponivel(Vertice v) {
 
 	ArrayList<Integer> coresUsadas = new ArrayList<>();
 
-	ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
-	adjacentesFiltrados.addAll(v.getAdjacentes());
-	adjacentesFiltrados.removeAll(q);
+//	ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
+//	adjacentesFiltrados.addAll(v.getAdjacentes());
+//	adjacentesFiltrados.removeAll(qb);
 
-	for (Vertice u : adjacentesFiltrados) {
+//	for (Vertice u : adjacentesFiltrados) {
+	for (Vertice u : v.getAdjacentes()) {
 
 	    Integer cor = verticesColoridos.get(u);
 

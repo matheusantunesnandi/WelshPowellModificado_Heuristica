@@ -176,7 +176,7 @@ public class Grafo {
     }
 
     public void ordernarVerticesPorGrau() {
-	ordernarVertices(vertices);
+	ordernarVerticesPorGrau(vertices);
     }
 
     public void ordernarVerticesPorGrau(ArrayList<Vertice> vertices) {
