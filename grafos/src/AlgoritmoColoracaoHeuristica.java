@@ -2,108 +2,109 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AlgoritmoColoracaoHeuristica {
-    public static int PRIMEIRO_DA_LISTA = 0;
+	public static int PRIMEIRO_DA_LISTA = 0;
 
-    private Grafo grafo;
+	private Grafo grafo;
 
-    // Vertices ordenados pelo grau.
-    private ArrayList<Vertice> q = new ArrayList<>();
+	// Vertices ordenados pelo grau.
+	private ArrayList<Vertice> q = new ArrayList<>();
 
-    private ArrayList<Integer> cores = new ArrayList<>();
+	private ArrayList<Integer> cores = new ArrayList<>();
 
-    private HashMap<Vertice, Integer> verticesColoridos = new HashMap<>();
+	private HashMap<Vertice, Integer> verticesColoridos = new HashMap<>();
 
-    public AlgoritmoColoracaoHeuristica(Grafo grafo) {
-	this.grafo = grafo;
+	public AlgoritmoColoracaoHeuristica(Grafo grafo) {
+		this.grafo = grafo;
 
-	q.addAll(grafo.getVertices());
+		q.addAll(grafo.getVertices());
 
-//	TODO Corrigir a ordenação de algum modo. Observando no desenho, a ordem deveria ser: a || d, b || c, s || t
-	grafo.ordernarVerticesPorGrau(q);
+		// TODO Corrigir a ordenação de algum modo. Observando no desenho, a ordem
+		// deveria ser: a || d, b || c, s || t
+		grafo.ordernarVerticesPorGrau(q);
 
-	for (Vertice v : q) {
-	    verticesColoridos.put(v, null);
-	}
-    }
-
-    public void imprimirNumeroCromatico() {
-
-	colorir();
-
-	StringBuilder nCromatico = new StringBuilder();
-
-	nCromatico.append("Welsh-Powell Modificado para heurística:\n");
-
-	ArrayList<Vertice> vertices = new ArrayList<>();
-	vertices.addAll(q);
-
-	Vertice z = vertices.get(PRIMEIRO_DA_LISTA);
-	vertices.remove(z);
-	nCromatico.append(z.getNome());
-	nCromatico.append("-");
-	nCromatico.append(verticesColoridos.get(z));
-
-	for (Vertice u : vertices) {
-	    nCromatico.append(", ");
-	    nCromatico.append(u.getNome());
-	    nCromatico.append("-");
-	    nCromatico.append(verticesColoridos.get(u));
+		for (Vertice v : q) {
+			verticesColoridos.put(v, null);
+		}
 	}
 
-	nCromatico.append("\n");
-	nCromatico.append("Número cromático = ");
-	nCromatico.append(cores.size());
+	public void imprimirNumeroCromatico() {
 
-	System.out.println(nCromatico);
-	System.out.println();
-    }
+		colorir();
 
-    public void colorir() {
+		StringBuilder nCromatico = new StringBuilder();
 
-	ArrayList<Vertice> qb = new ArrayList<>();
-	qb.addAll(q);
+		nCromatico.append("Welsh-Powell Modificado para heurística:\n");
 
-	while (!qb.isEmpty()) {
-	    Vertice u = qb.get(PRIMEIRO_DA_LISTA);
-	    qb.remove(u);
+		ArrayList<Vertice> vertices = new ArrayList<>();
+		vertices.addAll(q);
 
-	    Integer proximaCor = getProximaCorDisponivel(u);
+		Vertice z = vertices.get(PRIMEIRO_DA_LISTA);
+		vertices.remove(z);
+		nCromatico.append(z.getNome());
+		nCromatico.append("-");
+		nCromatico.append(verticesColoridos.get(z));
 
-	    atualizarCorDoVertice(u, proximaCor);
-	}
-    }
+		for (Vertice u : vertices) {
+			nCromatico.append(", ");
+			nCromatico.append(u.getNome());
+			nCromatico.append("-");
+			nCromatico.append(verticesColoridos.get(u));
+		}
 
-    public int getProximaCorDisponivel(Vertice v) {
+		nCromatico.append("\n");
+		nCromatico.append("Número cromático = ");
+		nCromatico.append(cores.size());
 
-	ArrayList<Integer> coresUsadas = new ArrayList<>();
-
-	for (Vertice u : v.getAdjacentes()) {
-
-	    Integer cor = verticesColoridos.get(u);
-
-	    if (cor != null) {
-		coresUsadas.add(cor);
-	    }
-
+		System.out.println(nCromatico);
+		System.out.println();
 	}
 
-	ArrayList<Integer> coresFiltradas = new ArrayList<>();
-	coresFiltradas.addAll(cores);
-	coresFiltradas.removeAll(coresUsadas);
+	public void colorir() {
 
-	if (coresFiltradas.isEmpty()) {
+		ArrayList<Vertice> qb = new ArrayList<>();
+		qb.addAll(q);
 
-	    Integer proximaCor = cores.size() + 1;
+		while (!qb.isEmpty()) {
+			Vertice u = qb.get(PRIMEIRO_DA_LISTA);
+			qb.remove(u);
 
-	    cores.add(proximaCor);
-	    return proximaCor;
+			Integer proximaCor = getProximaCorDisponivel(u);
+
+			atualizarCorDoVertice(u, proximaCor);
+		}
 	}
 
-	return coresFiltradas.get(PRIMEIRO_DA_LISTA);
-    }
+	public int getProximaCorDisponivel(Vertice v) {
 
-    public void atualizarCorDoVertice(Vertice v, Integer cor) {
-	verticesColoridos.replace(v, cor);
-    }
+		ArrayList<Integer> coresUsadas = new ArrayList<>();
+
+		for (Vertice u : v.getAdjacentes()) {
+
+			Integer cor = verticesColoridos.get(u);
+
+			if (cor != null) {
+				coresUsadas.add(cor);
+			}
+
+		}
+
+		ArrayList<Integer> coresFiltradas = new ArrayList<>();
+		coresFiltradas.addAll(cores);
+		coresFiltradas.removeAll(coresUsadas);
+
+		if (coresFiltradas.isEmpty()) {
+
+			Integer proximaCor = cores.size() + 1;
+
+			cores.add(proximaCor);
+			return proximaCor;
+		}
+
+		return coresFiltradas.get(PRIMEIRO_DA_LISTA);
+	}
+
+	public void atualizarCorDoVertice(Vertice v, Integer cor) {
+		verticesColoridos.replace(v, cor);
+	}
 
 }
