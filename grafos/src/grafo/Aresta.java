@@ -1,3 +1,4 @@
+package grafo;
 
 public class Aresta {
 
@@ -7,7 +8,6 @@ public class Aresta {
 	private Double valor = null;
 
 	public String toString() {
-
 		StringBuilder s = new StringBuilder();
 		s.append(verticeA.getNome());
 		s.append("_");

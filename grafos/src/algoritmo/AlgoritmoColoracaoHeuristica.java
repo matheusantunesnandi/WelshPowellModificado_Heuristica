@@ -1,7 +1,11 @@
+package algoritmo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AlgoritmoWelshPowell {
+import grafo.Grafo;
+import grafo.Vertice;
+
+public class AlgoritmoColoracaoHeuristica {
 	public static int PRIMEIRO_DA_LISTA = 0;
 
 	private Grafo grafo;
@@ -13,8 +17,8 @@ public class AlgoritmoWelshPowell {
 
 	private HashMap<Vertice, Integer> verticesColoridos = new HashMap<>();
 
-	public AlgoritmoWelshPowell(Grafo grafo) {
-		this.setGrafo(grafo);
+	public AlgoritmoColoracaoHeuristica(Grafo grafo) {
+		this.grafo = grafo;
 
 		q.addAll(grafo.getVertices());
 
@@ -31,14 +35,13 @@ public class AlgoritmoWelshPowell {
 
 		StringBuilder txt = new StringBuilder();
 
-		txt.append("Algoritmo de Welsh-Powell:\n");
+		txt.append("Welsh-Powell Modificado para heurística:\n");
 
 		ArrayList<Vertice> vertices = new ArrayList<>();
 		vertices.addAll(q);
 
 		Vertice z = vertices.get(PRIMEIRO_DA_LISTA);
 		vertices.remove(z);
-		txt.append("Vertices: \n");
 		txt.append(z.getNome());
 		txt.append("-");
 		txt.append(verticesColoridos.get(z));
@@ -71,28 +74,20 @@ public class AlgoritmoWelshPowell {
 
 			atualizarCorDoVertice(u, proximaCor);
 
-			// Todos menos U menos os adjacentes é igual a todos que não são adjacentes a U:
-			ArrayList<Vertice> naoAdjacentes = new ArrayList<>();
-			naoAdjacentes.addAll(q);
-			naoAdjacentes.remove(u);
-			naoAdjacentes.removeAll(u.getAdjacentes());
+			// Todos menos o que fala é igual o que já foi:
+			ArrayList<Vertice> verticesDefinidos = new ArrayList<>();
+			verticesDefinidos.addAll(q);
+			verticesDefinidos.removeAll(qb);
 
-			ArrayList<Vertice> pintados = new ArrayList<>();
-			for (Vertice p : naoAdjacentes) {
-				if (verticesColoridos.get(p) != null) {
-					pintados.add(p);
-				}
-			}
-
-			// Não pode pintar os não-adjacentes que já foram definidos
-			naoAdjacentes.removeAll(pintados);
+			ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
+			adjacentesFiltrados.addAll(u.getAdjacentes());
+			adjacentesFiltrados.removeAll(verticesDefinidos);
 
 			// Pintar somente os adjacentes que ainda não foram definidos
-			for (Vertice v : naoAdjacentes) {
+			for (Vertice v : adjacentesFiltrados) {
+				// TODO Parte desnecessária?
 				atualizarCorDoVertice(v, proximaCor);
 			}
-
-			qb.removeAll(naoAdjacentes);
 		}
 	}
 
@@ -144,5 +139,4 @@ public class AlgoritmoWelshPowell {
 	public void setGrafo(Grafo grafo) {
 		this.grafo = grafo;
 	}
-
 }

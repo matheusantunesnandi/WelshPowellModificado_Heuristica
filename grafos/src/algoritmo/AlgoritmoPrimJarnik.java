@@ -1,5 +1,10 @@
+package algoritmo;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import grafo.Aresta;
+import grafo.Grafo;
+import grafo.Vertice;
 
 public class AlgoritmoPrimJarnik {
 	public static double VALOR_RAIZ = 0.0;

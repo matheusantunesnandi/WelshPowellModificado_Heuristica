@@ -1,4 +1,9 @@
+package algoritmo;
 import java.util.ArrayList;
+
+import grafo.Aresta;
+import grafo.Grafo;
+import grafo.Vertice;
 
 public class AlgoritmoKruskale {
 	public static int PRIMEIRO_DA_LISTA = 0;
