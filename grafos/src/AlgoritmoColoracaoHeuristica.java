@@ -71,6 +71,10 @@ public class AlgoritmoColoracaoHeuristica {
 			Integer proximaCor = getProximaCorDisponivel(u);
 
 			atualizarCorDoVertice(u, proximaCor);
+
+//			for (Vertice vertice : u.getAdjacentes()) {
+//				atualizarCorDoVertice(u, proximaCor);
+//			}
 		}
 	}
 
