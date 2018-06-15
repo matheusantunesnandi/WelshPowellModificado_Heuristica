@@ -1,4 +1,5 @@
 package algoritmo;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,7 +23,7 @@ public class AlgoritmoColoracaoHeuristica {
 
 		q.addAll(grafo.getVertices());
 
-		grafo.ordernarVerticesPorGrau(q);
+		grafo.ordernarVerticesPorGrauDecrescente(q);
 
 		for (Vertice v : q) {
 			verticesColoridos.put(v, null);

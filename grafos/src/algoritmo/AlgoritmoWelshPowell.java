@@ -1,4 +1,5 @@
 package algoritmo;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,7 +23,7 @@ public class AlgoritmoWelshPowell {
 
 		q.addAll(grafo.getVertices());
 
-		grafo.ordernarVerticesPorGrau(q);
+		grafo.ordernarVerticesPorGrauDecrescente(q);
 
 		for (Vertice v : q) {
 			verticesColoridos.put(v, null);
@@ -103,14 +104,6 @@ public class AlgoritmoWelshPowell {
 	public int getProximaCorDisponivel(Vertice v) {
 
 		ArrayList<Integer> coresUsadas = new ArrayList<>();
-
-		// ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
-		//
-		// // Adiciona todos
-		// adjacentesFiltrados.addAll(q);
-		//
-		// // Todos menos o que não foi pintado = O que já foi pintado
-		// adjacentesFiltrados.removeAll(verticesNaoDefinidos);
 
 		for (Vertice u : v.getAdjacentes()) {
 
