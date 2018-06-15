@@ -128,4 +128,11 @@ public class AlgoritmoColoracaoHeuristica {
 		verticesColoridos.replace(v, cor);
 	}
 
+	public Grafo getGrafo() {
+		return grafo;
+	}
+
+	public void setGrafo(Grafo grafo) {
+		this.grafo = grafo;
+	}
 }

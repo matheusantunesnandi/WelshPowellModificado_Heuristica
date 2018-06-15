@@ -14,7 +14,7 @@ public class AlgoritmoWelshPowell {
 	private HashMap<Vertice, Integer> verticesColoridos = new HashMap<>();
 
 	public AlgoritmoWelshPowell(Grafo grafo) {
-		this.grafo = grafo;
+		this.setGrafo(grafo);
 
 		q.addAll(grafo.getVertices());
 
@@ -134,6 +134,14 @@ public class AlgoritmoWelshPowell {
 
 	public void atualizarCorDoVertice(Vertice v, Integer cor) {
 		verticesColoridos.replace(v, cor);
+	}
+
+	public Grafo getGrafo() {
+		return grafo;
+	}
+
+	public void setGrafo(Grafo grafo) {
+		this.grafo = grafo;
 	}
 
 }
