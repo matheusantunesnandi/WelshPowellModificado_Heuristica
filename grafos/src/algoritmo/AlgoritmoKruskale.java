@@ -1,4 +1,5 @@
 package algoritmo;
+
 import java.util.ArrayList;
 
 import grafo.Aresta;
@@ -100,6 +101,7 @@ public class AlgoritmoKruskale {
 		return false;
 	}
 
+	// TODO Poderia ser realizado utilizando lógica de conjuntos:
 	public ArrayList<Vertice> verticesDoComponente(Vertice raiz, ArrayList<Vertice> vertices) {
 
 		if (!vertices.contains(raiz)) {
