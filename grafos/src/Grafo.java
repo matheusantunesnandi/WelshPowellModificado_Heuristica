@@ -176,13 +176,13 @@ public class Grafo {
     }
 
     public void ordernarVerticesPorGrau() {
-	ordernarVertices(vertices);
+	ordernarVerticesPorGrau(vertices);
     }
 
     public void ordernarVerticesPorGrau(ArrayList<Vertice> vertices) {
 	Collections.sort(vertices, new Comparator<Vertice>() {
 	    public int compare(Vertice v1, Vertice v2) {
-		return v1.getGrau() < v2.getGrau() ? -1 : v1.getGrau() == v2.getGrau() ? 0 : 1;
+		return v1.getGrau() < v2.getGrau() ? 1 : v1.getGrau() == v2.getGrau() ? 0 : -1;
 	    }
 	});
     }
