@@ -7,7 +7,8 @@ public class Principal {
 		// executarTrabalho3();
 		// executarAlgoritmoFordFulkerson();
 
-		executarSeminario();
+		// executarSeminario();
+		executarAlgoritmoWelshPowell();
 	}
 
 	public static void executarSeminario() {
@@ -33,7 +34,7 @@ public class Principal {
 		g.adicionarAresta("c", "t", 10.0);
 
 		AlgoritmoColoracaoHeuristica ach = new AlgoritmoColoracaoHeuristica(g);
-		ach.imprimirNumeroCromatico();
+		// ach.imprimirNumeroCromatico();
 
 		// Bibartido
 		g = new Grafo();
@@ -44,7 +45,7 @@ public class Principal {
 		g.adicionarVertice("c");
 		g.adicionarVertice("d");
 		g.adicionarVertice("t");
-		
+
 		g.adicionarAresta("s", "b", 10.0);
 		g.adicionarAresta("s", "c", 10.0);
 		g.adicionarAresta("a", "b", 10.0);
@@ -125,6 +126,50 @@ public class Principal {
 
 		AlgoritmoFordFulkerson aff = new AlgoritmoFordFulkerson(g, "s", "t");
 		aff.imprimirValorFluxoMaximo();
+	}
+
+	public static void executarAlgoritmoWelshPowell() {
+
+		// Exemplo do professor:
+		Grafo g = new Grafo();
+
+		// g.setOrientado(true);
+
+		g.adicionarVertice("s");
+		g.adicionarVertice("a");
+		g.adicionarVertice("b");
+		g.adicionarVertice("c");
+		g.adicionarVertice("d");
+		g.adicionarVertice("t");
+
+		g.adicionarAresta("s", "a", 10.0);
+		g.adicionarAresta("s", "b", 10.0);
+		g.adicionarAresta("a", "c", 4.0);
+		g.adicionarAresta("a", "d", 8.0);
+		g.adicionarAresta("a", "b", 2.0);
+		g.adicionarAresta("b", "d", 9.0);
+		g.adicionarAresta("d", "c", 6.0);
+		g.adicionarAresta("d", "t", 10.0);
+		g.adicionarAresta("c", "t", 10.0);
+
+		AlgoritmoWelshPowell awp = new AlgoritmoWelshPowell(g);
+		awp.imprimirNumeroCromatico();
+
+		// Bibartido
+		g = new Grafo();
+
+		g.adicionarVertice("s");
+		g.adicionarVertice("a");
+		g.adicionarVertice("b");
+		g.adicionarVertice("c");
+
+		g.adicionarAresta("s", "b", 10.0);
+		g.adicionarAresta("s", "c", 10.0);
+		g.adicionarAresta("a", "b", 10.0);
+		g.adicionarAresta("a", "c", 10.0);
+
+		awp = new AlgoritmoWelshPowell(g);
+		awp.imprimirNumeroCromatico();
 	}
 
 	/**

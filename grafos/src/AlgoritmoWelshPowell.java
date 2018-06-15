@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class AlgoritmoColoracaoHeuristica {
+public class AlgoritmoWelshPowell {
 	public static int PRIMEIRO_DA_LISTA = 0;
 
 	private Grafo grafo;
@@ -13,7 +13,7 @@ public class AlgoritmoColoracaoHeuristica {
 
 	private HashMap<Vertice, Integer> verticesColoridos = new HashMap<>();
 
-	public AlgoritmoColoracaoHeuristica(Grafo grafo) {
+	public AlgoritmoWelshPowell(Grafo grafo) {
 		this.grafo = grafo;
 
 		q.addAll(grafo.getVertices());
@@ -31,7 +31,7 @@ public class AlgoritmoColoracaoHeuristica {
 
 		StringBuilder nCromatico = new StringBuilder();
 
-		nCromatico.append("Welsh-Powell Modificado para heurística:\n");
+		nCromatico.append("Welsh-Powell Modificado:\n");
 
 		ArrayList<Vertice> vertices = new ArrayList<>();
 		vertices.addAll(q);
@@ -70,20 +70,28 @@ public class AlgoritmoColoracaoHeuristica {
 
 			atualizarCorDoVertice(u, proximaCor);
 
-			// Todos menos o que fala é igual o que já foi:
-			ArrayList<Vertice> verticesDefinidos = new ArrayList<>();
-			verticesDefinidos.addAll(q);
-			verticesDefinidos.removeAll(qb);
+			// Todos menos U menos os adjacentes é igual a todos que não são adjacentes a U:
+			ArrayList<Vertice> naoAdjacentes = new ArrayList<>();
+			naoAdjacentes.addAll(q);
+			naoAdjacentes.remove(u);
+			naoAdjacentes.removeAll(u.getAdjacentes());
 
-			ArrayList<Vertice> adjacentesFiltrados = new ArrayList<>();
-			adjacentesFiltrados.addAll(u.getAdjacentes());
-			adjacentesFiltrados.removeAll(verticesDefinidos);
+			ArrayList<Vertice> pintados = new ArrayList<>();
+			for (Vertice p : naoAdjacentes) {
+				if (verticesColoridos.get(p) != null) {
+					pintados.add(p);
+				}
+			}
+
+			// Não pode pintar os não-adjacentes que já foram definidos
+			naoAdjacentes.removeAll(pintados);
 
 			// Pintar somente os adjacentes que ainda não foram definidos
-			for (Vertice v : adjacentesFiltrados) {
-				// TODO Parte desnecessária?
+			for (Vertice v : naoAdjacentes) {
 				atualizarCorDoVertice(v, proximaCor);
 			}
+
+			qb.removeAll(naoAdjacentes);
 		}
 	}
 
