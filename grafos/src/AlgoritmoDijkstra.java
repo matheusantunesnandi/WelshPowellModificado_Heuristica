@@ -36,24 +36,23 @@ public class AlgoritmoDijkstra {
 	public void imprimirTabelaDistanciaCaminho() {
 		calcularDistancias();
 
-		StringBuilder tabela = new StringBuilder();
-		tabela.append("Dijkstra\n");
-		tabela.append("Tabela de caminho mínimo:\n");
-
-		tabela.append("Nome - Perm - Dist - Path");
+		StringBuilder txt = new StringBuilder();
+		txt.append("Dijkstra\n");
+		txt.append("Tabela de caminho mínimo:\n");
+		txt.append("Nome - Perm - Dist - Path");
 
 		for (Vertice v : grafo.getVertices()) {
-			tabela.append("\n");
-			tabela.append(v.getNome());
-			tabela.append(" - ");
-			tabela.append(!q.contains(v));
-			tabela.append(" - ");
-			tabela.append(distanciasAtribuidas.get(v));
-			tabela.append(" - ");
-			tabela.append(verticesAnteriores.get(v));
+			txt.append("\n");
+			txt.append(v.getNome());
+			txt.append(" - ");
+			txt.append(!q.contains(v));
+			txt.append(" - ");
+			txt.append(distanciasAtribuidas.get(v));
+			txt.append(" - ");
+			txt.append(verticesAnteriores.get(v));
 		}
 
-		System.out.println(tabela);
+		System.out.println(txt);
 		System.out.println();
 	}
 

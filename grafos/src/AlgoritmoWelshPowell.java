@@ -29,31 +29,32 @@ public class AlgoritmoWelshPowell {
 
 		colorir();
 
-		StringBuilder nCromatico = new StringBuilder();
+		StringBuilder txt = new StringBuilder();
 
-		nCromatico.append("Welsh-Powell Modificado:\n");
+		txt.append("Algoritmo de Welsh-Powell:\n");
 
 		ArrayList<Vertice> vertices = new ArrayList<>();
 		vertices.addAll(q);
 
 		Vertice z = vertices.get(PRIMEIRO_DA_LISTA);
 		vertices.remove(z);
-		nCromatico.append(z.getNome());
-		nCromatico.append("-");
-		nCromatico.append(verticesColoridos.get(z));
+		txt.append("Vertices: \n");
+		txt.append(z.getNome());
+		txt.append("-");
+		txt.append(verticesColoridos.get(z));
 
 		for (Vertice u : vertices) {
-			nCromatico.append(", ");
-			nCromatico.append(u.getNome());
-			nCromatico.append("-");
-			nCromatico.append(verticesColoridos.get(u));
+			txt.append(", ");
+			txt.append(u.getNome());
+			txt.append("-");
+			txt.append(verticesColoridos.get(u));
 		}
 
-		nCromatico.append("\n");
-		nCromatico.append("Número cromático = ");
-		nCromatico.append(cores.size());
+		txt.append("\n");
+		txt.append("Número cromático = ");
+		txt.append(cores.size());
 
-		System.out.println(nCromatico);
+		System.out.println(txt);
 		System.out.println();
 	}
 

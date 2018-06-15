@@ -17,22 +17,22 @@ public class AlgoritmoKruskale {
 	}
 
 	public void imprimirArvoreGeradoraMinima() {
-		StringBuilder tabela = new StringBuilder();
+		StringBuilder txt = new StringBuilder();
 
-		tabela.append("Kruskale\n");
-		tabela.append("Árvore geradora mínima:\n");
-		tabela.append("Arestas: ");
+		txt.append("Kruskale\n");
+		txt.append("Árvore geradora mínima:\n");
+		txt.append("Arestas: ");
 
 		for (Aresta a : getArestasArvoreGeradoraMinima()) {
-			tabela.append("(");
-			tabela.append(a);
-			tabela.append(")");
+			txt.append("(");
+			txt.append(a);
+			txt.append(")");
 		}
 
-		tabela.append("\nCusto: ");
-		tabela.append(custo);
+		txt.append("\nCusto: ");
+		txt.append(custo);
 
-		System.out.println(tabela);
+		System.out.println(txt);
 		System.out.println();
 	}
 
