@@ -4,18 +4,20 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- * N�o funciona com multi-grafo. Ou seja, n�o pode conter la�os ou dois vertices
- * com mais de uma aresta entre eles
+ * Não funciona com multi-grafo. Ou seja, não pode conter laços ou dois vertices
+ * com mais de uma aresta entre eles.
+ * Classe responsável por lidar com a estrutura básica de um grafo de coloração.
+ * Tem como base o uso do algoritmo de Welsh-Powell. Mas pode ser usado para outros tipos de algoritmos.
  **/
 public class Grafo {
 	public static int PRIMEIRO_DA_LISTA = 0;
-
+	//variáveis para o tipo de grafo
 	private boolean valorado = false;
 	private boolean orientado = false;
-
+	//listas para os vértices e arestas
 	private ArrayList<Vertice> vertices = new ArrayList<>();
 	private ArrayList<Aresta> arestas = new ArrayList<>();
-
+	//acrescenta um novo vértice na lista
 	public void adicionarVertice(String nome) {
 		Vertice v = new Vertice();
 		v.setNome(nome);
@@ -26,37 +28,37 @@ public class Grafo {
 	public void adicionarVertice(Vertice v) {
 		vertices.add(v);
 	}
-
+	//método que utiliza um outro método de busca para encontrar e então remover o vértice. 
 	public void removerVertice(String nome) {
 		vertices.remove(buscarVerticePorNome(nome));
 	}
-
+	
 	public void removerVertice(Vertice v) {
 		vertices.remove(v);
 	}
-
+	//adiciona uma aresta buscando os vértices relevantes, juntando então a aresta e os vértices.
 	public void adicionarAresta(String nomeVerticeA, String nomeVerticeB, Double valor) {
 		Vertice verticeA = buscarVerticePorNome(nomeVerticeA);
 		Vertice verticeB = buscarVerticePorNome(nomeVerticeB);
 
 		adicionarAresta(verticeA, verticeB, valor);
 	}
-
+	
 	public void adicionarAresta(Vertice verticeA, Vertice verticeB, Double valor) {
 
 		// boolean arestaExistenteAB = false;
 		// boolean arestaExistenteBA = false;
-
+		//se não for orientado
 		if (!isOrientado()) {
-
+			//se o vértice A não for adjacente ao vértice B 
 			if (!verticeA.getAdjacentes().contains(verticeB)) {
-				verticeA.getAdjacentes().add(verticeB);
+				verticeA.getAdjacentes().add(verticeB); //adiciona adjacência
 
 			}
 			// else {
 			// arestaExistenteAB = true;
 			// }
-
+			//se o vértice B não for adjacente ao vértice A
 			if (!verticeB.getAdjacentes().contains(verticeA)) {
 				verticeB.getAdjacentes().add(verticeA);
 
@@ -64,8 +66,8 @@ public class Grafo {
 			// else {
 			// arestaExistenteBA = true;
 			// }
-		} else {
-
+		} else {//caso for orientado
+			
 			if (!verticeA.getAdjacentes().contains(verticeB))
 				verticeA.getAdjacentes().add(verticeB);
 		}

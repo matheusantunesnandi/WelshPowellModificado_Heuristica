@@ -1,12 +1,12 @@
 package grafo;
-
+//classe responsável por lidar com arestas
 public class Aresta {
-
+	//esses dois vértices são ligados
 	private Vertice verticeA = null;
 	private Vertice verticeB = null;
-
+	//valor da aresta
 	private Double valor = null;
-
+	//método com StringBuilder para concatenação de Strings
 	public String toString() {
 		StringBuilder s = new StringBuilder();
 		s.append(verticeA.getNome());
@@ -17,7 +17,7 @@ public class Aresta {
 
 		return s.toString();
 	}
-
+	//abaixo só getter e setters
 	public Double getValor() {
 		return valor;
 	}

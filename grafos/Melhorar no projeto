@@ -1,3 +1,6 @@
 Falta melhorar:
 
-- V�rios m�todos na classe Grafo poderiam ser est�ticos.
+- Vários métodos na classe Grafo poderiam ser estáticos.
+- Fazer mais testes para ver se está tudo certo.
+- Alter nomes das variáveis e dos elementos na classe principal para estar de acordo com o tema escolhido.
+- Incluir o arquivo de apresentação. 
