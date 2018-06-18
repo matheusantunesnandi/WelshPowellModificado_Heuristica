@@ -1,6 +1,6 @@
 package grafo;
 import java.util.ArrayList;
-
+//classe dos vértices
 public class Vertice {
 
 	private String nome = "";
@@ -9,7 +9,7 @@ public class Vertice {
 	public Vertice() {
 
 	}
-
+	//pega o grau do vértice pelo tamanho do 
 	public int getGrau() {
 		return adjacentes.size();
 	}
@@ -21,7 +21,7 @@ public class Vertice {
 
 		return v;
 	}
-
+	//getters e setters
 	public Vertice(String nome) {
 		this.nome = nome;
 	}

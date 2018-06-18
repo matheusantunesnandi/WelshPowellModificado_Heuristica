@@ -43,7 +43,7 @@ public class Grafo {
 
 		adicionarAresta(verticeA, verticeB, valor);
 	}
-	
+	//adiciona aresta valorada por objeto vértice
 	public void adicionarAresta(Vertice verticeA, Vertice verticeB, Double valor) {
 
 		// boolean arestaExistenteAB = false;
@@ -84,7 +84,7 @@ public class Grafo {
 
 		arestas.add(a);
 	}
-
+	//adiciona aresta por método
 	public void adicionarAresta(Aresta a) {
 
 		Vertice verticeA = a.getVerticeA();
@@ -99,7 +99,7 @@ public class Grafo {
 
 		arestas.add(a);
 	}
-
+	//método para remover aresta por nome de vértice (String)
 	public void removerAresta(String nomeVerticeA, String nomeVerticeB) {
 		Vertice verticeA = buscarVerticePorNome(nomeVerticeA);
 		Vertice verticeB = buscarVerticePorNome(nomeVerticeB);
@@ -110,7 +110,7 @@ public class Grafo {
 	public void removerAresta(Aresta a) {
 		removerAresta(a.getVerticeA(), a.getVerticeB());
 	}
-
+	//remove aresta por objeto vértice
 	public void removerAresta(Vertice verticeA, Vertice verticeB) {
 		arestas.remove(buscarArestaCorrespondente(verticeA, verticeB));
 
@@ -132,14 +132,14 @@ public class Grafo {
 
 		return null;
 	}
-
+	//método de chamada por nome de vértices para encontrar arestas
 	public Aresta buscarArestaCorrespondente(String verticeA, String verticeB) {
 		Vertice a = buscarVerticePorNome(verticeA);
 		Vertice b = buscarVerticePorNome(verticeB);
 
 		return buscarArestaCorrespondente(a, b);
 	}
-
+	//utiliza vértices para encontrar uma aresta correspondente
 	public Aresta buscarArestaCorrespondente(Vertice verticeA, Vertice verticeB) {
 		for (Aresta aresta : arestas) {
 
@@ -153,11 +153,11 @@ public class Grafo {
 		}
 		return null;
 	}
-
+	//método de chamada para ordenação de arestas
 	public void ordernarArestas() {
 		ordernarArestas(arestas);
 	}
-
+	//método de ordenação de arestas utilizando arraylist
 	public void ordernarArestas(ArrayList<Aresta> arestas) {
 		Collections.sort(arestas, new Comparator<Aresta>() {
 			public int compare(Aresta a1, Aresta a2) {
@@ -165,11 +165,11 @@ public class Grafo {
 			}
 		});
 	}
-
+	//método de chamada de ordenação de vértices
 	public void ordernarVertices() {
 		ordernarVertices(vertices);
 	}
-
+	//método de ordenação de vértices
 	public void ordernarVertices(ArrayList<Vertice> vertices) {
 		Collections.sort(vertices, new Comparator<Vertice>() {
 			public int compare(Vertice v1, Vertice v2) {
@@ -177,11 +177,11 @@ public class Grafo {
 			}
 		});
 	}
-
+	//método de chamada de ordenação de vértices por grau
 	public void ordernarVerticesPorGrau() {
 		ordernarVerticesPorGrau(vertices);
 	}
-
+	//método de ordenação de vértices por grau
 	public void ordernarVerticesPorGrau(ArrayList<Vertice> vertices) {
 		Collections.sort(vertices, new Comparator<Vertice>() {
 			public int compare(Vertice v1, Vertice v2) {
@@ -201,7 +201,7 @@ public class Grafo {
 			}
 		});
 	}
-
+	//getters e setters
 	public boolean isValorado() {
 		return valorado;
 	}

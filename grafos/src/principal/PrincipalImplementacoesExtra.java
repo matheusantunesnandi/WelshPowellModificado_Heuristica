@@ -3,7 +3,7 @@ package principal;
 import algoritmo.AlgoritmoFordFulkerson;
 import algoritmo.AlgoritmoWelshPowell;
 import grafo.Grafo;
-
+//classe principal
 public class PrincipalImplementacoesExtra {
 
 	public static void main(String[] args) {
@@ -12,21 +12,21 @@ public class PrincipalImplementacoesExtra {
 		executarAlgoritmoWelshPowell();
 
 	}
-
+	//não é mais relevantes para o trabalho
 	public static void executarAlgoritmoFordFulkerson() {
 		Grafo g = new Grafo();
 
 		g.setOrientado(true);
 
-		g.adicionarVertice("s");
+		g.adicionarVertice("Pólvora");
 		g.adicionarVertice("a");
-		g.adicionarVertice("b");
-		g.adicionarVertice("c");
+		g.adicionarVertice("Nitrato de Amônio");
+		g.adicionarVertice("C4");
 		g.adicionarVertice("d");
 		g.adicionarVertice("t");
 
-		g.adicionarAresta("s", "a", 10.0);
-		g.adicionarAresta("s", "b", 10.0);
+		g.adicionarAresta("Pólvora", "a", 10.0);
+		g.adicionarAresta("Pólvora", "b", 10.0);
 		g.adicionarAresta("a", "c", 4.0);
 		g.adicionarAresta("a", "d", 8.0);
 		g.adicionarAresta("a", "b", 2.0);
@@ -35,7 +35,7 @@ public class PrincipalImplementacoesExtra {
 		g.adicionarAresta("d", "t", 10.0);
 		g.adicionarAresta("c", "t", 10.0);
 
-		AlgoritmoFordFulkerson aff = new AlgoritmoFordFulkerson(g, "s", "t");
+		AlgoritmoFordFulkerson aff = new AlgoritmoFordFulkerson(g, "Pólvora", "t");
 		aff.imprimirValorFluxoMaximo();
 	}
 
@@ -43,22 +43,22 @@ public class PrincipalImplementacoesExtra {
 		// Exemplo do professor:
 		Grafo g = new Grafo();
 
-		g.adicionarVertice("s");
-		g.adicionarVertice("a");
-		g.adicionarVertice("b");
-		g.adicionarVertice("c");
+		g.adicionarVertice("Pólvora");
+		g.adicionarVertice("Nitroglicerina");
+		g.adicionarVertice("Nitrato de Amônio");
+		g.adicionarVertice("C4");
 		g.adicionarVertice("d");
 		g.adicionarVertice("t");
 
-		g.adicionarAresta("s", "a", 10.0);
-		g.adicionarAresta("s", "b", 10.0);
-		g.adicionarAresta("a", "c", 4.0);
-		g.adicionarAresta("a", "d", 8.0);
-		g.adicionarAresta("a", "b", 2.0);
-		g.adicionarAresta("b", "d", 9.0);
-		g.adicionarAresta("d", "c", 6.0);
+		g.adicionarAresta("Pólvora", "Nitroglicerina", 10.0);
+		g.adicionarAresta("Pólvora", "Nitrato de Amônio", 10.0);
+		g.adicionarAresta("Nitroglicerina", "C4", 4.0);
+		g.adicionarAresta("Nitroglicerina", "d", 8.0);
+		g.adicionarAresta("Nitroglicerina", "Nitrato de Amônio", 2.0);
+		g.adicionarAresta("Nitrato de Amônio", "d", 9.0);
+		g.adicionarAresta("d", "C4", 6.0);
 		g.adicionarAresta("d", "t", 10.0);
-		g.adicionarAresta("c", "t", 10.0);
+		g.adicionarAresta("C4", "t", 10.0);
 
 		AlgoritmoWelshPowell awp = new AlgoritmoWelshPowell(g);
 		// System.out.println("Exemplo do professor:");
@@ -67,32 +67,32 @@ public class PrincipalImplementacoesExtra {
 		// Bipartido
 		g = new Grafo();
 
-		g.adicionarVertice("s");
-		g.adicionarVertice("a");
-		g.adicionarVertice("b");
-		g.adicionarVertice("c");
+		g.adicionarVertice("Pólvora");
+		g.adicionarVertice("Nitroglicerina");
+		g.adicionarVertice("Nitrato de Amônio");
+		g.adicionarVertice("C4");
 		g.adicionarVertice("d");
 		g.adicionarVertice("t");
 
-		g.adicionarAresta("s", "b", 10.0);
-		g.adicionarAresta("s", "c", 10.0);
-		g.adicionarAresta("a", "b", 10.0);
-		g.adicionarAresta("a", "c", 10.0);
+		g.adicionarAresta("Pólvora", "Nitrato de Amônio", 10.0);
+		g.adicionarAresta("Pólvora", "C4", 10.0);
+		g.adicionarAresta("Nitroglicerina", "Nitrato de Amônio", 10.0);
+		g.adicionarAresta("Nitroglicerina", "C4", 10.0);
 
-		g.adicionarAresta("b", "s", 10.0);
-		g.adicionarAresta("b", "a", 10.0);
-		g.adicionarAresta("c", "s", 10.0);
-		g.adicionarAresta("c", "a", 10.0);
+		g.adicionarAresta("Nitrato de Amônio", "Pólvora", 10.0);
+		g.adicionarAresta("Nitrato de Amônio", "Nitroglicerina", 10.0);
+		g.adicionarAresta("C4", "Pólvora", 10.0);
+		g.adicionarAresta("C4", "Nitroglicerina", 10.0);
 
 		awp = new AlgoritmoWelshPowell(g);
 		System.out.println("Bipartido");
 		awp.imprimirNumeroCromatico();
 
-		// Exemplo do v�deo:
+		// Exemplo do v�deo:
 		g = new Grafo();
-		g.adicionarVertice("a");
-		g.adicionarVertice("b");
-		g.adicionarVertice("c");
+		g.adicionarVertice("Nitroglicerina");
+		g.adicionarVertice("Nitrato de Amônio");
+		g.adicionarVertice("C4");
 		g.adicionarVertice("d");
 		g.adicionarVertice("e");
 		g.adicionarVertice("f");
@@ -103,15 +103,15 @@ public class PrincipalImplementacoesExtra {
 		g.adicionarVertice("k");
 		g.adicionarVertice("l");
 
-		g.adicionarAresta("a", "b", 0.0);
-		g.adicionarAresta("a", "f", 0.0);
-		g.adicionarAresta("a", "g", 0.0);
-		g.adicionarAresta("b", "c", 0.0);
-		g.adicionarAresta("b", "g", 0.0);
-		g.adicionarAresta("b", "h", 0.0);
-		g.adicionarAresta("c", "d", 0.0);
-		g.adicionarAresta("c", "g", 0.0);
-		g.adicionarAresta("c", "j", 0.0);
+		g.adicionarAresta("Nitroglicerina", "Nitrato de Amônio", 0.0);
+		g.adicionarAresta("Nitroglicerina", "f", 0.0);
+		g.adicionarAresta("Nitroglicerina", "g", 0.0);
+		g.adicionarAresta("Nitrato de Amônio", "C4", 0.0);
+		g.adicionarAresta("Nitrato de Amônio", "g", 0.0);
+		g.adicionarAresta("Nitrato de Amônio", "h", 0.0);
+		g.adicionarAresta("C4", "d", 0.0);
+		g.adicionarAresta("C4", "g", 0.0);
+		g.adicionarAresta("C4", "j", 0.0);
 		g.adicionarAresta("d", "e", 0.0);
 		g.adicionarAresta("d", "g", 0.0);
 		g.adicionarAresta("e", "f", 0.0);
@@ -127,7 +127,7 @@ public class PrincipalImplementacoesExtra {
 		g.adicionarAresta("j", "l", 0.0);
 
 		awp = new AlgoritmoWelshPowell(g);
-		System.out.println("Exemplo do v�deo:");
+		System.out.println("Exemplo do v�deo:");
 		awp.imprimirNumeroCromatico();
 	}
 }
