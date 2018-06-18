@@ -3,6 +3,7 @@ package algoritmo;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import grafo.Aresta;
 import grafo.Grafo;
 import grafo.Vertice;
 
@@ -38,6 +39,18 @@ public class AlgoritmoWelshPowell {
 
 		txt.append("Algoritmo de Welsh-Powell:\n");
 
+		appendVertices(txt);
+
+		appendArestas(txt);
+
+		txt.append("Número cromático = ");
+		txt.append(cores.size());
+
+		System.out.println(txt);
+		System.out.println();
+	}
+
+	private void appendVertices(StringBuilder txt) {
 		ArrayList<Vertice> vertices = new ArrayList<>();
 		vertices.addAll(q);
 
@@ -56,11 +69,22 @@ public class AlgoritmoWelshPowell {
 		}
 
 		txt.append("\n");
-		txt.append("Número cromático = ");
-		txt.append(cores.size());
+	}
 
-		System.out.println(txt);
-		System.out.println();
+	private void appendArestas(StringBuilder txt) {
+		ArrayList<Aresta> arestas = grafo.getArestas();
+
+		Aresta a = arestas.get(PRIMEIRO_DA_LISTA);
+		arestas.remove(a);
+		txt.append("Arestas:\n");
+		txt.append(a);
+
+		for (Aresta e : arestas) {
+			txt.append(", ");
+			txt.append(e);
+		}
+
+		txt.append("\n");
 	}
 
 	public void colorir() {

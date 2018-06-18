@@ -51,10 +51,14 @@ public class AlgoritmoPrimJarnik {
 		txt.append("Árvore geradora mínima:\n");
 		txt.append("Arestas: ");
 
-		for (Aresta a : getArestasArvoreGeradoraMinima()) {
-			txt.append("(");
-			txt.append(a);
-			txt.append(")");
+		ArrayList<Aresta> arestas = getArestasArvoreGeradoraMinima();
+		
+		Aresta a = arestas.get(PRIMEIRO_DA_LISTA);
+		txt.append(a);
+		
+		for (Aresta j : arestas) {
+			txt.append(", ");
+			txt.append(j);
 		}
 
 		txt.append("\nCusto: ");

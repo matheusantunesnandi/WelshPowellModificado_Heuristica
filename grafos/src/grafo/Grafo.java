@@ -1,4 +1,5 @@
 package grafo;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -9,6 +10,9 @@ import java.util.Comparator;
  **/
 public class Grafo {
 	public static int PRIMEIRO_DA_LISTA = 0;
+	public static double SEM_VALOR = 0.0;
+
+	private String nome = "";
 
 	private boolean valorado = false;
 	private boolean orientado = false;
@@ -35,9 +39,29 @@ public class Grafo {
 		vertices.remove(v);
 	}
 
+	public void adicionarAresta(String nomeVerticeA, String nomeVerticeB) {
+		adicionarAresta(nomeVerticeA, nomeVerticeB, SEM_VALOR);
+	}
+
 	public void adicionarAresta(String nomeVerticeA, String nomeVerticeB, Double valor) {
 		Vertice verticeA = buscarVerticePorNome(nomeVerticeA);
 		Vertice verticeB = buscarVerticePorNome(nomeVerticeB);
+
+		// Criar vértices se não existir:
+		// if (verticeA == null) {
+		// verticeA = new Vertice(nomeVerticeA);
+		//
+		// this.adicionarVertice(verticeA);
+		//
+		// System.out.println("g.adicionarVertice(\"" + nomeVerticeA + "\")");
+		// }
+		// if (verticeB == null) {
+		// verticeB = new Vertice(nomeVerticeB);
+		//
+		// this.adicionarVertice(verticeB);
+		//
+		// System.out.println("g.adicionarVertice(" + nomeVerticeB + ")");
+		// }
 
 		adicionarAresta(verticeA, verticeB, valor);
 	}
@@ -200,6 +224,29 @@ public class Grafo {
 		});
 	}
 
+	public Grafo getComplemento() {
+		Grafo c = new Grafo();
+		
+		c.setNome("(Complemento) " + this.getNome());
+
+		for (Vertice u : this.getVertices()) {
+			ArrayList<Vertice> naoAdjacentesDeU = new ArrayList<>();
+			naoAdjacentesDeU.addAll(this.getVertices());
+			naoAdjacentesDeU.removeAll(u.getAdjacentes());
+
+			Vertice v = u.clone();
+			v.setAdjacentes(naoAdjacentesDeU);
+
+			c.adicionarVertice(v);
+
+			for (Vertice j : naoAdjacentesDeU) {
+				c.getArestas().add(new Aresta(v, j, SEM_VALOR));
+			}
+		}
+
+		return c;
+	}
+
 	public boolean isValorado() {
 		return valorado;
 	}
@@ -230,6 +277,14 @@ public class Grafo {
 
 	public void setArestas(ArrayList<Aresta> arestas) {
 		this.arestas = arestas;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }

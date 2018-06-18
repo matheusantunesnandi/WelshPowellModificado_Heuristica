@@ -6,14 +6,27 @@ public class Aresta {
 	private Vertice verticeB = null;
 
 	private Double valor = null;
+	
+	public Aresta() {
+		super();
+	}
+
+	public Aresta(Vertice a, Vertice b, Double valor) {
+		this.verticeA = a;
+		this.verticeB = b;
+		this.valor = valor;
+	}
 
 	public String toString() {
 		StringBuilder s = new StringBuilder();
+		s.append("[");
 		s.append(verticeA.getNome());
-		s.append("_");
+		s.append(" -> ");
 		s.append(verticeB.getNome());
-		s.append(" ");
+		s.append(" (");
 		s.append(valor);
+		s.append(")");
+		s.append("]");
 
 		return s.toString();
 	}

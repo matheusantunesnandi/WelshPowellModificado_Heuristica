@@ -6,8 +6,6 @@ import grafo.Grafo;
 public class PrincipalSeminario_Opcao1 {
 	public static void main(String[] args) {
 		executarSeminario();
-
-		System.out.println("PrincipalSeminario_Opcao1.java");
 	}
 
 	public static void executarSeminario() {
@@ -101,5 +99,7 @@ public class PrincipalSeminario_Opcao1 {
 		ach = new AlgoritmoColoracaoHeuristica(g);
 		System.out.println("Exemplo do vídeo:");
 		ach.imprimirNumeroCromatico();
+		
+		System.out.println("PrincipalSeminario_Opcao1");
 	}
 }

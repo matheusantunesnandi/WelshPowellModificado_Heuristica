@@ -94,7 +94,7 @@ public class PrincipalTrabalhos {
 		StringBuilder l = new StringBuilder();
 
 		l.append("As arestas são mostradas com o seguinte padrão:\n");
-		l.append("(VerticeA_VerticeB Valor).");
+		l.append("(VerticeA -> VerticeB (Valor).");
 
 		System.out.println(l.toString());
 		System.out.println();
